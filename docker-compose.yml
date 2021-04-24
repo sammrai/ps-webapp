@@ -1,0 +1,12 @@
+
+version: "2.3"
+services:
+  nginx:
+    build: . 
+    container_name: nginx
+    volumes:
+      - ./public:/root/public
+    ports:
+      - 8081:80
+    pid: host
+    privileged: true
