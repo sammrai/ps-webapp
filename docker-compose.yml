@@ -9,3 +9,8 @@ services:
     ports:
       - 8081:80
     pid: host
+    restart: always
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
+    runtime: nvidia

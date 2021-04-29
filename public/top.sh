@@ -1,21 +1,24 @@
 #!/bin/sh
 
+cecho(){
+    echo "<h2>${@}</h2>"
+    echo "<pre>"
+    eval "$1"
+    echo "</pre>"
+}
+
 eval $QUERY_STRING
 echo 'Content-type: text/html'  
 echo ''
 
-echo '<html>'
-echo '<head></head>'
+echo '<!DOCTYPE html>'
+echo '<head><meta charset="UTF-8"><title>ps-webapp</title></head>'
+echo '<body>'
 echo '<h1>Server Overview</h1>'
 
-cecho(){
-    echo "<h2>${@}</h2>"
-    echo "<pre>"
-    eval $@
-    echo "</pre>"
-}
+cecho "nvidia-smi"
+cecho "sensors"
+cecho "top -b -n 1 | head -n 20"
 
-cecho sensors
-cecho top -b -n 1 -c | head -n 30
-
-echo '<body>'
+echo '</body>'
+echo '</html>'
